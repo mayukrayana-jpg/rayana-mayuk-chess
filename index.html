@@ -1,0 +1,229 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rayana Mayuk Chess Academy</title>
+<style>
+:root {
+  --bg: #080e15;
+  --panel: #111c28;
+  --gold: #f0bd55;
+  --text: #f4f2ec;
+  --muted: #aab7c7;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 22px 6%;
+  border-bottom: 1px solid #273442;
+}
+.brand { color: var(--gold); font-family: Georgia, serif; }
+.brand h1 { margin: 0; font-size: 25px; }
+.brand p { margin: 5px 0 0; letter-spacing: 3px; }
+nav { display: flex; flex-wrap: wrap; gap: 20px; }
+nav a { color: var(--text); text-decoration: none; }
+nav a:hover { color: var(--gold); }
+.hero { padding: 45px 6% 25px; }
+.hero h2 {
+  color: var(--gold);
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 5vw, 48px);
+  margin: 8px 0;
+}
+.hero p { color: var(--muted); line-height: 1.7; }
+main {
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) minmax(260px, 1fr);
+  gap: 24px;
+  padding: 15px 6% 55px;
+}
+.panel, .card {
+  background: var(--panel);
+  border: 1px solid #293849;
+  border-radius: 14px;
+  padding: 22px;
+}
+h3 { margin-top: 0; }
+.board {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  width: 100%;
+  max-width: 480px;
+  margin: 20px auto;
+  border: 3px solid #b58b4b;
+}
+.square {
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  font-size: clamp(19px, 4vw, 43px);
+  cursor: pointer;
+  color: #10151b;
+  user-select: none;
+}
+.light { background: #ead5ad; }
+.dark { background: #a87545; }
+.square.selected { outline: 4px solid #f4cf59; outline-offset: -4px; }
+button {
+  background: var(--gold);
+  color: #15120a;
+  border: 0;
+  border-radius: 8px;
+  padding: 11px 16px;
+  font-weight: bold;
+  cursor: pointer;
+}
+button:hover { filter: brightness(1.1); }
+.cards { display: grid; gap: 14px; }
+.card { border-left: 4px solid var(--gold); }
+.card p { color: var(--muted); line-height: 1.5; }
+.card a { color: var(--gold); }
+footer {
+  text-align: center;
+  padding: 25px;
+  border-top: 1px solid #293849;
+  color: var(--gold);
+}
+@media(max-width: 760px) {
+  header { align-items: flex-start; flex-direction: column; }
+  main { grid-template-columns: 1fr; padding: 15px 4% 35px; }
+  .hero { padding: 30px 4% 15px; }
+  nav { gap: 14px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">
+    <h1>♛ RAYANA MAYUK</h1>
+    <p>CHESS ACADEMY</p>
+  </div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#lessons">Lessons</a>
+    <a href="#practice">Practice</a>
+    <a href="#openings">Openings</a>
+    <a href="#endgames">Endgames</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <p>WELCOME, CHESS PLAYER</p>
+  <h2>Think Better. Play Stronger.</h2>
+  <p>Build your skills step by step. Learn the ideas behind every move
+  and become a stronger, more confident chess player.</p>
+</section>
+
+<main>
+  <section class="panel" id="practice">
+    <h3>♟ Play & Learn</h3>
+    <p style="color:var(--muted)">Starting chess position · Practice board</p>
+    <div class="board" id="board" aria-label="Chessboard"></div>
+    <button onclick="resetBoard()">Reset Board</button>
+    <button onclick="flipBoard()">Flip Board</button>
+    <p id="message" style="color:var(--muted)">
+      Select a square to highlight it. This is a practice board, not a full chess engine.
+    </p>
+  </section>
+
+  <section class="cards">
+    <article class="card" id="lessons">
+      <h3>🎯 Tactics Training</h3>
+      <p>Practise forks, pins, skewers, discovered attacks and checkmate patterns.</p>
+      <a href="https://lichess.org/practice">Explore free chess practice →</a>
+    </article>
+    <article class="card">
+      <h3>📘 Chess Lessons</h3>
+      <p>Learn piece activity, king safety, calculation and positional thinking.</p>
+      <a href="https://lichess.org/learn">Start learning →</a>
+    </article>
+    <article class="card" id="openings">
+      <h3>♜ Opening Principles</h3>
+      <p>Control the centre, develop your pieces, protect your king and avoid
+      memorising moves without understanding them.</p>
+      <a href="https://lichess.org/opening">Explore openings →</a>
+    </article>
+    <article class="card" id="endgames">
+      <h3>♔ Endgame Academy</h3>
+      <p>Study king and pawn endings, opposition, rook endings and converting advantages.</p>
+      <a href="https://lichess.org/practice">Study endgames →</a>
+    </article>
+    <article class="card">
+      <h3>📈 Your Training Mission</h3>
+      <p>Daily goal: solve 10 puzzles, analyse one game and learn one useful idea.</p>
+      <p>Consistency beats random study. Improve one move at a time.</p>
+    </article>
+  </section>
+</main>
+
+<footer>
+  ♛ RAYANA MAYUK CHESS ACADEMY
+  <p>Learn · Practise · Improve · Achieve</p>
+</footer>
+
+<script>
+const initial = [
+  ["♜","♞","♝","♛","♚","♝","♞","♜"],
+  ["♟","♟","♟","♟","♟","♟","♟","♟"],
+  ["","","","","","","",""],
+  ["","","","","","","",""],
+  ["","","","","","","",""],
+  ["","","","","","","",""],
+  ["♙","♙","♙","♙","♙","♙","♙","♙"],
+  ["♖","♘","♗","♕","♔","♗","♘","♖"]
+];
+let position = initial.map(row => [...row]);
+let flipped = false;
+let selected = null;
+
+function drawBoard() {
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+  for (let r = 0; r < 8; r++) {
+    for (let c = 0; c < 8; c++) {
+      const rr = flipped ? 7-r : r;
+      const cc = flipped ? 7-c : c;
+      const square = document.createElement("div");
+      square.className = "square " +
+        ((rr + cc) % 2 === 0 ? "light" : "dark");
+      square.textContent = position[rr][cc];
+      if (selected && selected[0] === rr && selected[1] === cc) {
+        square.classList.add("selected");
+      }
+      square.onclick = () => {
+        selected = [rr, cc];
+        drawBoard();
+        document.getElementById("message").textContent =
+          "Selected square " + "abcdefgh"[cc] + (8-rr) +
+          ". This demo highlights squares but does not validate moves.";
+      };
+      board.appendChild(square);
+    }
+  }
+}
+function resetBoard() {
+  position = initial.map(row => [...row]);
+  selected = null;
+  drawBoard();
+  document.getElementById("message").textContent =
+    "Board reset to the starting position.";
+}
+function flipBoard() {
+  flipped = !flipped;
+  drawBoard();
+}
+drawBoard();
+</script>
+</body>
+</html>
